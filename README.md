@@ -1,0 +1,21 @@
+# Navigation-GA
+C++ implementation of a genetic algorithm to solve a robot pathfinding problem, using an experimental chromosome structure. Coded in Spring 2014 for an Independent Study under Dr. Roger Wainwright at the University of Tulsa.
+
+In this problem, a robot seeks to find a path from a starting position to some goal. We assume that the robot is roughly aware of the obstacles in its way, and structure our tests such that it must always travel from the upper-left corner of a map to the lower-right.
+This project was based on a master's thesis written in 2004 by Kamran Sedighi, "Local Path-planning of an Autonomous Mobile Robot Using a Genetic Algorithm." In that work, Sedighi used a chromosome that detailed a path in either column-wise or row-wise coordinates, and provided two opportunities to switch between coordinate-systems.
+The focus of my work was on performing experimentation with a new chromosome structure for the genetic algorithm, which allowed switching between coordinate systems at any point. We found that this made the pathfinding much more flexible overall.
+Finally, I determined that the worst-case scenario which should still be workable for this chromosome structure was a map which required the maximum amount of travel away from the straight line between the starting position and the goal. Some simple test cases can also thwart the algorithm by requiring too much backtracking, as mentioned in the report.
+
+**main**: Initial program I/O, and the main GA loop.
+**Trail**: Represents a single path, as expressed by any given chromosome.
+**Chromosome**: Interface for two chromosome types experimented with.
+**TurnPointChrom**: Chromosome developed for this work.
+**CoordinateChrom**: Sanity-check chromosome which simply specifies a fixed-length list X,Y coordinate pairs.
+**GANavigation.exe**: A Windows executable that allows users to specify parameters to the algorithm and run it on one of the supplied datasets. Test map file names should be specified relative to the executable's directory.
+**results**: Contains some sample results for the worst-case testing that I focused my work on, and a report for the conclusion of the study.
+**tests**: Contains some test "map" files, in a straightforward ASCII representation, to run the algorithm on. Note that all maps are square, with a size encoded in the initial line of each file.
+ - Files prefixed **corners** are maps that exhibit worst-case traits for the chromosome structure we used (i.e., they require a large number of deviations from the "straight line" path to the goal).
+ - Files prefixed **godugu** are sample test cases taken from a work by Jagruthi Godugu, "Development of a Benchmark for Robot Path Planning." These were meant to provide baseline tests for our algorithm.
+ - Files prefixed **manikas** are taken from a work by Theodore Manikas, "Genetic Algorithms for Autonomous Robot Navigation." This work provided additional baseline tests.
+ - Files prefixed **SearchSpace** are taken from the dataset used by Thomas Geisler in "Autonomous Robot Navigation System using a Genetic Algorithm with a Novel Value Encoding Technique."
+ - Other files were developed by me for specific testing needs.
